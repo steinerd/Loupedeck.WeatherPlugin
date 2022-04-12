@@ -1,0 +1,39 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherPlugin", "WeatherPlugin\WeatherPlugin.csproj", "{7C63C333-2504-4A57-B51C-B2B93B9F033D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D87DC47B-F4E2-4D86-8545-AF6D9D5272D0}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		build-plugin.ps1 = build-plugin.ps1
+		LICENSE = LICENSE
+		LoupedeckPackage.yaml = LoupedeckPackage.yaml
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{A1ACA36A-8007-48E7-88B5-F76BFA8E2780}"
+	ProjectSection(SolutionItems) = preProject
+		.github\ISSUE_TEMPLATE.md = .github\ISSUE_TEMPLATE.md
+		.github\PULL_REQUEST_TEMPLATE.md = .github\PULL_REQUEST_TEMPLATE.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C63C333-2504-4A57-B51C-B2B93B9F033D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C63C333-2504-4A57-B51C-B2B93B9F033D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C63C333-2504-4A57-B51C-B2B93B9F033D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C63C333-2504-4A57-B51C-B2B93B9F033D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E7AD6BCC-6DFA-4228-96E4-35F9C5EE3FF7}
+	EndGlobalSection
+EndGlobal
