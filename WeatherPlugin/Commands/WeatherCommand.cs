@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Timers;
 
-    using Timer = System.Timers.Timer;  
+    using Timer = System.Timers.Timer;
 
     public class WeatherCommand : PluginDynamicCommand
     {
@@ -43,7 +43,7 @@
         private void OnTimerElapse(object sender, ElapsedEventArgs e)
         {
             foreach (var ap in this.DataCache.Keys)
-            { 
+            {
                 this.RetrieveData(ap);
                 this.ActionImageChanged(ap);
             }
@@ -108,7 +108,15 @@
                     data.HideName = bool.Parse(paramArgs[2] ?? "false");
                 }
 
-                var weather = await this.weatherApiService.GetCurrentWeather(locationQuery, apiKey);
+                Models.Weather weather = null;
+                try
+                {
+                    weather = await this.weatherApiService.GetCurrentWeather(locationQuery, apiKey);
+                }
+                catch (Exception ex)
+                {
+                    return;
+                }
 
                 data.Name = weather.location.name;
                 data.Temperature = (C: weather.current.temp_c, F: weather.current.temp_f);
