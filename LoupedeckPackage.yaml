@@ -1,6 +1,6 @@
 type: plugin4
 name: Weather
-displayName: Weather
+displayName: Weather Plugin
 version: 1.0.0
 author: Steinerd.com
 copyright: Copyright (c) 2022 Anthony Steiner
@@ -10,5 +10,10 @@ supportedDevices:
   - LoupedeckLive
 
 pluginFileName: WeatherPlugin.dll
-pluginFolderWin: ./bin/win/
-pluginFolderMac: ./bin/mac/
+pluginFolderWin: ./bin/
+pluginFolderMac: ./bin/
+
+license: MIT
+licenseUrl: https://opensource.org/licenses/MIT
+homePageUrl: https://github.com/Steinerd/Loupedeck.WeatherPlugin
+supportPageUrl: https://github.com/Steinerd/Loupedeck.WeatherPlugin/issues
