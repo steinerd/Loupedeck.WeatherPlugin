@@ -9,7 +9,7 @@
 ## Credits
 
 This plugin is *heavily* influenced by [CZDanol/loupedeck-weatherwidget](https://github.com/CZDanol/loupedeck-weatherwidget). 
-I personally couldn't get it to work, and decided to create a smaller, leaner version of the same concepts. 
+I personally couldn't get it to work consistantly and decided to create a smaller, leaner version of the same concepts. 
 
 --------
 
@@ -53,11 +53,12 @@ First, follow the __Loupedeck Installation__ instructions above.
 
 Then, to use inside the Loupedeck UI: 
 
-1. Go to https://www.weatherapi.com/signup.aspx and create a free account, if you don't have one already
-1. Api Key should be provided at the top of the page
-1. Click the [+] button on the same row	as *Location* to add a location
-1. Now comes the fun part... the value for this control is colon delimited; `location_query:weatherapi_key:hide_name` (ex: `90210:64e546s54546546f5da:true` to show weather for Beverly Hills and hide the name in the widget ).
-	1. Enter a city name, or zip/postal code ([anything in the example highlighted here](https://www.weatherapi.com/docs/#:~:text=q,could%20be%20following%3A))
+1. Go to https://home.openweathermap.org/users/sign_up and create a free account, if you don't have one already
+1. Api Key can be created via https://home.openweathermap.org/api_keys
+1. In the Loupedeck manager Click the [+] button on the same row as *Location* to add a location
+1. Now comes the fun part... the value for this control is colon delimited; `postal_code,2_letter_iso_country_code:api_key:hide_name` (ex: `90210,us:98c98a0ba57d4a0a33e2a1d2d06ac365:true` to show weather for Beverly Hills **and** hide the name in the widget).<br/>
+The last two steps are optional, hiding the location name is default to `true`
+	1. Enter postal code and 2-letter ISO Country Code 
 	1. :
 	1. API Key
 	1. : 
