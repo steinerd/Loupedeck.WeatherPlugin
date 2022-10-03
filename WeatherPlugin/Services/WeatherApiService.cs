@@ -9,49 +9,42 @@
     using System.Net.Http;
     using System.Net.Http.Formatting;
     using System.Threading;
+    using System.Net.Http.Json;
+    using Loupedeck.WeatherPlugin.Models;
 
-    public class WeatherApiService
+    public sealed class WeatherApiService
     {
+        public const string ClientName = "openWeatherApi";
+        private readonly static string BaseURL = "https://api.openweathermap.org/data/";
+        
+        private HttpClient _client;
 
-        private readonly static HttpClient Client = new HttpClient();
-        private readonly static string BaseURL = "https://api.weatherapi.com/v1/current.json";
-
-        private readonly string _apiKey;
-        public WeatherApiService(string apiKey = null)
-        {
-            this._apiKey = apiKey;
+        public WeatherApiService(IHttpClientFactory httpClientFactory = null)
+        {            
+            this._client = HttpClientFactory.Create();
+            this._client.BaseAddress = new Uri(BaseURL);
         }
 
-        public async Task<Models.Weather> GetCurrentWeather(string locationQuery, string apiKey = null)
+        ~WeatherApiService()
         {
-            using (var tokeSource = new CancellationTokenSource())
-            {
-                HttpResponseMessage response = null;
-                try
-                {
-                    apiKey = apiKey ?? this._apiKey;
-                    response = await Client.GetAsync($"{BaseURL}?key={apiKey}&q={locationQuery}&aqi=no", tokeSource.Token);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"ERROR - {ex.ToString()}");
-                    throw;
-                }
-
-                return await response.Content.ReadAsAsync<Models.Weather>();
-            }
+            this._client.Dispose();
+            this._client = null;
         }
 
-
-        public async Task<byte[]> GetIconBytes(Models.Weather weather)
+        public async Task<WeatherResponse> GetCurrentWeather(string zipAndCountry, string apiKey, CancellationToken cancellationToken)
         {
-            if (string.IsNullOrEmpty(weather.current.condition.icon))
-                return null;
-
-            using (var iconResponse = await Client.GetAsync($"https:{weather.current.condition.icon}"))
+            WeatherResponse response = null;
+            try
             {
-                return await iconResponse.Content.ReadAsByteArrayAsync();
+                response = await this._client.GetFromJsonAsync<WeatherResponse>($"2.5/weather?zip={zipAndCountry}&appid={apiKey}", cancellationToken);
+                var iconBytes = await this._client.GetByteArrayAsync(new Uri($"https://openweathermap.org/img/wn/{response.weather[0].icon}@2x.png"));
+                response.weather[0].iconBytes = iconBytes;
+            }catch(Exception)
+            {
+                //throw;
             }
+
+            return response;
         }
 
     }
