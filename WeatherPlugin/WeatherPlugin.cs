@@ -1,10 +1,9 @@
 namespace Loupedeck.WeatherPlugin
 {
     using System;
-
     using Microsoft.Win32;
 
-    public class WeatherPlugin : Plugin
+    public sealed class WeatherPlugin : Plugin
     {
         internal static WeatherPlugin Instance { get; private set; }
         public override Boolean HasNoApplication => true;
